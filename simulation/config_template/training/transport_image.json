@@ -1,0 +1,90 @@
+{
+    "dataset": {
+        "name": "robomimic_old",
+        "params": {
+            "num_obs": 1,
+            "num_action": 20,
+            "success_only": false,
+            "output_keys": ["actions"],
+            "normalize_actions": true,
+            "normalize_params": {
+                "type": "min_max",
+                "min_val": [
+                    -0.319, -0.679, 0.788, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0,
+                    -0.273, -0.061, 0.809, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0
+                ], 
+                "max_val": [
+                    0.455, 0.084, 1.393, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+                    0.243, 0.592, 1.324, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+                ]
+            },
+            "image_scale": 255.0
+        }
+    },
+    "batch_size": 64,
+    "num_workers": 24,
+    "num_iters_per_epoch": 100,
+    "policy": {
+        "name": "DP",
+        "params": {
+            "num_action": 20,
+            "obs_shape_meta": {
+                "robot0_eef_pos": {
+                    "shape": [3],
+                    "type": "low_dim"
+                },
+                "robot0_eef_quat": {
+                    "shape": [4],
+                    "type": "low_dim"
+                },
+                "robot0_gripper_qpos": {
+                    "shape": [2],
+                    "type": "low_dim"
+                },
+                "robot1_eef_pos": {
+                    "shape": [3],
+                    "type": "low_dim"
+                },
+                "robot1_eef_quat": {
+                    "shape": [4],
+                    "type": "low_dim"
+                },
+                "robot1_gripper_qpos": {
+                    "shape": [2],
+                    "type": "low_dim"
+                },
+                "shouldercamera0_image": {
+                    "shape": [3, 84, 84],
+                    "type": "rgb"
+                },
+                "robot0_eye_in_hand_image": {
+                    "shape": [3, 84, 84],
+                    "type": "rgb"
+                },
+                "shouldercamera1_image": {
+                    "shape": [3, 84, 84],
+                    "type": "rgb"
+                },
+                "robot1_eye_in_hand_image": {
+                    "shape": [3, 84, 84],
+                    "type": "rgb"
+                }
+            },
+            "action_dim": 20,
+            "down_dims": [512, 1024, 2048]
+        }
+    },
+    "optimizer": {
+        "name": "AdamW",
+        "params": {
+            "lr": 3e-4,
+            "betas": [0.95, 0.999], 
+            "weight_decay": 1e-6
+        }
+    },
+    "lr_scheduler": {
+        "name": "cosine_with_warmup"
+    },
+    "num_epochs": 1000,
+    "save_epochs": 50
+}

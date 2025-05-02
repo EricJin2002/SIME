@@ -1,0 +1,64 @@
+{
+    "dataset": {
+        "name": "robomimic",
+        "params": {
+            "num_obs": 1,
+            "num_action": 20,
+            "success_only": false,
+            "output_keys": ["actions"],
+            "normalize_actions": true,
+            "normalize_params": {
+                "type": "min_max",
+                "min_val": [-0.226, -0.049, 0.779, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0], 
+                "max_val": [0.296, 0.313, 1.101, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+            },
+            "image_scale": 255.0
+        }
+    },
+    "batch_size": 64,
+    "num_workers": 24,
+    "num_iters_per_epoch": 100,
+    "policy": {
+        "name": "DP",
+        "params": {
+            "num_action": 20,
+            "obs_shape_meta": {
+                "robot0_eef_pos": {
+                    "shape": [3],
+                    "type": "low_dim"
+                },
+                "robot0_eef_quat": {
+                    "shape": [4],
+                    "type": "low_dim"
+                },
+                "robot0_gripper_qpos": {
+                    "shape": [2],
+                    "type": "low_dim"
+                },
+                "agentview_image": {
+                    "shape": [3, 84, 84],
+                    "type": "rgb"
+                },
+                "robot0_eye_in_hand_image": {
+                    "shape": [3, 84, 84],
+                    "type": "rgb"
+                }
+            },
+            "action_dim": 10,
+            "down_dims": [512, 1024, 2048]
+        }
+    },
+    "optimizer": {
+        "name": "AdamW",
+        "params": {
+            "lr": 3e-4,
+            "betas": [0.95, 0.999], 
+            "weight_decay": 1e-6
+        }
+    },
+    "lr_scheduler": {
+        "name": "cosine_with_warmup"
+    },
+    "num_epochs": 1000,
+    "save_epochs": 50
+}

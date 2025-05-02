@@ -1,0 +1,59 @@
+{
+    "log_dir": "logs/can_example",
+
+    "dataset": {
+        "name": "robomimic",
+        "params": {
+            "path": "/path/to/simulation/datasets/can/ph/low_dim_v141_abs_6drot.hdf5",
+            "train_filter_key": "core_20",
+            "num_obs": 1,
+            "num_action": 20,
+            "success_only": false,
+            "output_keys": ["actions"]
+        }
+    },
+    "seed": 233,
+    "batch_size": 60,
+    "num_workers": 24,
+    "num_iters_per_epoch": 100,
+    "policy": {
+        "name": "DP",
+        "params": {
+            "num_action": 20,
+            "obs_shape_meta": {
+                "robot0_eef_pos": {
+                    "shape": [3],
+                    "type": "low_dim"
+                },
+                "robot0_eef_quat": {
+                    "shape": [4],
+                    "type": "low_dim"
+                },
+                "robot0_gripper_qpos": {
+                    "shape": [2],
+                    "type": "low_dim"
+                },
+                "object": {
+                    "shape": [14],
+                    "type": "low_dim"
+                }
+            },
+            "action_dim": 10
+        }
+    },
+    "resume_ckpt": null,
+    "resume_epoch": -1,
+    "optimizer": {
+        "name": "AdamW",
+        "params": {
+            "lr": 3e-4,
+            "betas": [0.95, 0.999], 
+            "weight_decay": 1e-6
+        }
+    },
+    "lr_scheduler": {
+        "name": "cosine_with_warmup"
+    },
+    "num_epochs": 1000,
+    "save_epochs": 50
+}

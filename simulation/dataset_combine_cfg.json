@@ -1,0 +1,25 @@
+{
+    "output": "path/to/output/demo_plus_core.hdf5",
+    "input": [
+        {
+            "path": "path/to/input/demo.hdf5",
+            "map":[
+                [null, "all"],
+                ["sr_lss_0.3", "train_0.3"],
+                ["sr_lss_0.5", "train_0.5"],
+                ["sr_lss_0.9", "train_0.9"],
+                ["success", "train_success"]
+            ]
+        }, 
+        {
+            "path": "path/to/initially/provided/low_dim_v141_abs_6drot.hdf5",
+            "map":[
+                ["core_20", "all"],
+                ["core_20", "train_0.3"],
+                ["core_20", "train_0.5"],
+                ["core_20", "train_0.9"],
+                ["core_20", "train_success"]
+            ]
+        }
+    ]
+}
