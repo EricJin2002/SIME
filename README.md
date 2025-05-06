@@ -217,6 +217,14 @@ Parts of our code are adapted from [Diffusion Policy](https://github.com/real-st
 
 If you find this code useful, please consider citing our paper.
 
-```
-TBA
+```bibtex
+@misc{jin2025sime,
+      title={SIME: Enhancing Policy Self-Improvement with Modal-level Exploration}, 
+      author={Yang Jin and Jun Lv and Wenye Yu and Hongjie Fang and Yong-Lu Li and Cewu Lu},
+      year={2025},
+      eprint={2505.01396},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2505.01396}, 
+}
 ```
